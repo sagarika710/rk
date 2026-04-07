@@ -57,7 +57,7 @@ mongoose
 // 3. API ROUTES
 // ============================================
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.send('🎬 Radhakrishna Cinemax API is Running...');
 });
 
