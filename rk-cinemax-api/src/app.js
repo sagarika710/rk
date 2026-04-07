@@ -27,7 +27,10 @@ const frontendDistPath = path.resolve(__dirname, '../../radha-krishna-cinemax/di
 // ============================================
 
 // Security headers
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
+}));
 
 // CORS (Allow Browser + Postman + Mobile Apps)
 app.use(cors({
