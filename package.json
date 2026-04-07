@@ -5,8 +5,9 @@
     "dev": "node scripts/dev.js",
     "dev:web": "npm --prefix radha-krishna-cinemax run dev",
     "dev:api": "npm --prefix rk-cinemax-api run dev",
-    "build:render": "npm ci --prefix rk-cinemax-api && npm ci --prefix radha-krishna-cinemax && npm run build",
-    "build": "npm --prefix radha-krishna-cinemax run build",
+    "build:app": "npm --prefix radha-krishna-cinemax run build",
+    "build": "npm ci --prefix rk-cinemax-api && npm ci --prefix radha-krishna-cinemax && npm run build:app",
+    "build:render": "npm run build",
     "start": "npm --prefix rk-cinemax-api run start"
   }
 }
