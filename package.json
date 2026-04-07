@@ -1,0 +1,11 @@
+{
+  "name": "rk-cinemax",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "dev:web": "npm --prefix radha-krishna-cinemax run dev",
+    "dev:api": "npm --prefix rk-cinemax-api run dev",
+    "build": "npm --prefix radha-krishna-cinemax run build",
+    "start": "npm --prefix rk-cinemax-api run start"
+  }
+}
