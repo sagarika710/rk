@@ -48,7 +48,6 @@ app.use(express.urlencoded({ extended: true }));
 // ============================================
 // 2. DATABASE CONNECTION
 // ============================================
-console.log("MONGO_URI:", process.env.MONGO_URI);
 mongoose
     .connect(process.env.MONGO_URI)
     .then(() => console.log('✅ MongoDB Connected Successfully'))

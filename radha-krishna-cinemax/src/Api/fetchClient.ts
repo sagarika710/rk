@@ -1,11 +1,10 @@
 const BASE_URL = import.meta.env.VITE_BASE_URL || '';
 
 const request = async (url: string, options: any = {}) => {
-  const token = localStorage.getItem("admin_token"); // ✅ ADMIN TOKEN
-console.log("tokentoken",token)
+  const token = localStorage.getItem("admin_token");
   const headers: any = {
     "Content-Type": "application/json",
-    ...(token && { Authorization: `Bearer ${token}` }), // ✅ IMPORTANT
+    ...(token && { Authorization: `Bearer ${token}` }),
     ...options.headers,
   };
 
