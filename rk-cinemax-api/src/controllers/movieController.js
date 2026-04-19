@@ -2,7 +2,6 @@ const Movie = require('../models/Movie');
 const { cloudinary } = require('../config/cloudinary');
 
 exports.getMovies = async (req, res) => {
-  console.log('🔥 GET /api/movies called');
   try {
     const movies = await Movie.find().sort({ createdAt: -1 });
     res.json(movies);

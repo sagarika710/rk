@@ -21,6 +21,17 @@ const serviceRoutes = require('./routes/serviceRoutes');
 
 const app = express();
 const frontendDistPath = path.resolve(__dirname, '../../radha-krishna-cinemax/dist');
+const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    process.env.CORS_ORIGIN,
+    'https://radhakrishnacinemax.onrender.com',
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'http://localhost:3002',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:3001',
+    'http://127.0.0.1:3002',
+].filter(Boolean);
 
 // ============================================
 // 1. MIDDLEWARE
@@ -28,13 +39,33 @@ const frontendDistPath = path.resolve(__dirname, '../../radha-krishna-cinemax/di
 
 // Security headers
 app.use(helmet({
-    contentSecurityPolicy: false,
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            baseUri: ["'self'"],
+            fontSrc: ["'self'", 'https:', 'data:', 'https://fonts.gstatic.com'],
+            styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+            imgSrc: ["'self'", 'data:', 'blob:', 'https:'],
+            scriptSrc: ["'self'", "'unsafe-inline'", 'https://cdn.tailwindcss.com'],
+            connectSrc: ["'self'", 'https://api.themoviedb.org'],
+            frameSrc: ["'self'", 'https://www.youtube.com', 'https://youtube.com', 'https://www.google.com', 'https://maps.google.com'],
+            objectSrc: ["'none'"],
+            scriptSrcAttr: ["'none'"],
+            upgradeInsecureRequests: [],
+        },
+    },
     crossOriginEmbedderPolicy: false,
 }));
 
 // CORS (Allow Browser + Postman + Mobile Apps)
 app.use(cors({
-    origin: true, // allow all origins
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+
+        return callback(new Error('Not allowed by CORS'));
+    },
     credentials: true
 }));
 

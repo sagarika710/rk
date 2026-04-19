@@ -1,5 +1,13 @@
 const nodemailer = require('nodemailer');
 
+const escapeHtml = (value = '') =>
+    String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+
 const getMailTransport = () => {
     const {
         SMTP_HOST,
@@ -33,6 +41,11 @@ const sendQueryEmail = async ({ name, email, phone, subject, message }) => {
 
     const recipient = process.env.QUERY_RECEIVER_EMAIL || 'radhakrishnacinemax@gmail.com';
     const from = process.env.SMTP_FROM || process.env.SMTP_USER;
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone);
+    const safeSubject = escapeHtml(subject);
+    const safeMessage = escapeHtml(message).replace(/\n/g, '<br />');
 
     await transporter.sendMail({
         from,
@@ -50,12 +63,12 @@ const sendQueryEmail = async ({ name, email, phone, subject, message }) => {
         ].join('\n'),
         html: `
             <h2>New Support Query</h2>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Phone:</strong> ${phone}</p>
-            <p><strong>Subject:</strong> ${subject}</p>
+            <p><strong>Name:</strong> ${safeName}</p>
+            <p><strong>Email:</strong> ${safeEmail}</p>
+            <p><strong>Phone:</strong> ${safePhone}</p>
+            <p><strong>Subject:</strong> ${safeSubject}</p>
             <p><strong>Message:</strong></p>
-            <p>${message.replace(/\n/g, '<br />')}</p>
+            <p>${safeMessage}</p>
         `
     });
 };

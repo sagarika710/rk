@@ -8,7 +8,7 @@ const {
 const { protect } = require('../middleware/authMiddleware');
 
 router.get('/', getReviews);
-router.post('/', createReview);
+router.post('/', protect, createReview);
 router.delete('/:id', protect, deleteReview);
 
 module.exports = router;

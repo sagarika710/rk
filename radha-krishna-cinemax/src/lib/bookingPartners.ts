@@ -8,7 +8,7 @@ export interface BookingMovie {
 
 export const HALL_NAME = "Radhakrishna Cinemax: Nayagarh";
 export const BOOKMYSHOW_HALL_URL =
-  "https://in.bookmyshow.com/cinemas/nayagarh/radhakrishna-cinemax-nayagarh/buytickets/RCXN/20260407";
+  "https://in.bookmyshow.com/cinemas/nayagarh/radhakrishna-cinemax-nayagarh/RDKN";
 export const DISTRICT_MOVIES_URL =
   "https://www.district.in/movies/radhakrishna-cinemax-nayagarh-in-nayagarh-CD1102161";
 
