@@ -1,13 +1,23 @@
 {
-  "name": "rk-cinemax",
+  "name": "radha-krishna-cinemax",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "node scripts/dev.js",
-    "dev:web": "npm --prefix radha-krishna-cinemax run dev",
-    "dev:api": "npm --prefix rk-cinemax-api run dev",
-    "build:app": "npm --prefix radha-krishna-cinemax run build",
-    "build": "npm ci --legacy-peer-deps --prefix rk-cinemax-api && npm ci --prefix radha-krishna-cinemax && npm run build:app",
-    "build:render": "npm run build",
-    "start": "npm --prefix rk-cinemax-api run start"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lucide-react": "0.460.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-router-dom": "6.28.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
   }
 }
