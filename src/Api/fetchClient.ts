@@ -1,4 +1,5 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL || '';
+const PRODUCTION_API_URL = 'https://rk-backend-l0zu.onrender.com';
+const BASE_URL = import.meta.env.VITE_BASE_URL || (import.meta.env.PROD ? PRODUCTION_API_URL : '');
 
 const request = async (url: string, options: any = {}) => {
   const token = localStorage.getItem("admin_token");
