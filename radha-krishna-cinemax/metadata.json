@@ -1,7 +1,0 @@
-{
-  "name": "Radhakrishna Cinemax",
-  "description": "A premium cinematic experience website for Radhakrishna Cinemax in Nayagarh, Odisha, featuring movie listings, booking links, advertising opportunities, and corporate event hosting.",
-  "requestFramePermissions": [
-    "geolocation"
-  ]
-}

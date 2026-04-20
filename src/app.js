@@ -1,5 +1,5 @@
 const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -20,7 +20,6 @@ const eventRoutes = require('./routes/eventRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
 
 const app = express();
-const frontendDistPath = path.resolve(__dirname, '../../radha-krishna-cinemax/dist');
 const allowedOrigins = [
     process.env.FRONTEND_URL,
     process.env.CORS_ORIGIN,
@@ -95,6 +94,10 @@ app.get('/api', (req, res) => {
     res.send('🎬 Radhakrishna Cinemax API is Running...');
 });
 
+app.get('/', (req, res) => {
+    res.send('🎬 Radhakrishna Cinemax API is Running...');
+});
+
 app.get('/api/health', (req, res) => {
     res.json({
         ok: true,
@@ -115,20 +118,12 @@ app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/services', serviceRoutes);
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(frontendDistPath));
-}
-
 // ============================================
 // 4. ERROR HANDLING
 // ============================================
 
 // 404 Handler
 app.use((req, res, next) => {
-    if (process.env.NODE_ENV === 'production' && req.method === 'GET' && !req.originalUrl.startsWith('/api/')) {
-        return res.sendFile(path.join(frontendDistPath, 'index.html'));
-    }
-
     res.status(404).json({
         message: `Route not found - ${req.originalUrl}`
     });

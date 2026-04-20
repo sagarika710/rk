@@ -1,13 +1,33 @@
 {
-  "name": "rk-cinemax",
-  "private": true,
+  "name": "rk-cinemax-api",
+  "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
-    "dev": "node scripts/dev.js",
-    "dev:web": "npm --prefix radha-krishna-cinemax run dev",
-    "dev:api": "npm --prefix rk-cinemax-api run dev",
-    "build:app": "npm --prefix radha-krishna-cinemax run build",
-    "build": "npm ci --legacy-peer-deps --prefix rk-cinemax-api && npm ci --prefix radha-krishna-cinemax && npm run build:app",
-    "build:render": "npm run build",
-    "start": "npm --prefix rk-cinemax-api run start"
+    "start": "node src/app.js",
+    "build": "echo \"No build step required\"",
+    "dev": "nodemon src/app.js",
+    "seed": "node seedAdmin.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.1.0",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^8.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   }
 }

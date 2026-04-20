@@ -1,9 +1,7 @@
 node_modules
-**/node_modules
 dist
-**/dist
-.DS_Store
-*.log
 .env
-**/.env
-rk-cinemax-api/ReactNativeTest
+*.log
+.DS_Store
+radha-krishna-cinemax
+rk-cinemax-api

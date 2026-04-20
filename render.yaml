@@ -1,15 +1,18 @@
 services:
   - type: web
-    name: rk-cinemax
+    name: rk-cinemax-api
     runtime: node
     plan: free
-    rootDir: .
-    buildCommand: npm run build:render
+    buildCommand: npm ci --legacy-peer-deps
     startCommand: NODE_ENV=production npm start
     healthCheckPath: /api/health
     envVars:
       - key: HOST
         value: 0.0.0.0
+      - key: FRONTEND_URL
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
       - key: MONGO_URI
         sync: false
       - key: JWT_SECRET
@@ -23,8 +26,6 @@ services:
       - key: CLOUDINARY_API_KEY
         sync: false
       - key: CLOUDINARY_API_SECRET
-        sync: false
-      - key: VITE_TMDB_API_KEY
         sync: false
       - key: GEMINI_API_KEY
         sync: false
