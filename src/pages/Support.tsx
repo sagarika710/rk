@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {  LOCATION } from '../../constants';
 import { ChevronDown, ChevronUp, MapPin, Phone, Mail, Send, CheckCircle } from 'lucide-react';
 import { useData } from '../context/DataContext';
+import request from '../Api/fetchClient';
 
 const QUERY_EMAIL = 'radhakrishnacinemax@gmail.com';
 
@@ -32,19 +33,10 @@ const Support: React.FC = () => {
     setError('');
 
     try {
-      const response = await fetch('/api/queries', {
+      await request('/api/queries', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify(formData),
       });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || 'Failed to submit query');
-      }
 
       setIsSubmitted(true);
       setFormData({
